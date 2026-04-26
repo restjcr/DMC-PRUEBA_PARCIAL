@@ -4,6 +4,8 @@ import libreria_clases_proyecto1 as superclass
 
 st.title("4. Gestión de Empleados (CRUD)")
 
+st.markdown("Operaciones de Insercion, actualizacion, lectura y eliminación de empleados de una empresa ficticia.")
+
 # --- Estado ---
 if "empleados" not in st.session_state:
     st.session_state.empleados = []
