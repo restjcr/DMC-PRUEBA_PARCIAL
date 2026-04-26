@@ -3,6 +3,8 @@ import pandas as pd
 
 st.title("1. Flujo de caja con listas")
 
+st.markdown("Ingreso de ingresos y gastos personales.")
+
 # Lista Vacía
 if "registros" not in st.session_state:
     st.session_state.registros = []
@@ -20,7 +22,7 @@ tipo_operacion = st.radio(
 # Monto
 monto = st.number_input("Monto", min_value=0.0)
 
-# 👉 feedback
+# Agregar registro
 if st.button("Agregar"):
     if not concepto:
         st.error("El concepto es obligatorio ❌")
@@ -50,14 +52,14 @@ ingresos = df.loc[df["tipo_operacion"] == "Ingreso 💰", "monto"].sum()
 gastos = df.loc[df["tipo_operacion"] == "Gasto 💸", "monto"].sum()
 
 if ingresos > gastos:
-    saldo = "A favor 📈"
+    balance = "A favor 📈"
 elif ingresos == gastos:
-    saldo = "Neutro"
+    balance = "Neutro"
 else:
-    saldo = "En contra 📉"
+    balance = "En contra 📉"
 
 col1, col2, col3 = st.columns(3)
 
-col1.metric("Ingresos", f"S/. {ingresos}")
-col2.metric("Gastos", f"S/. {gastos}")
-col3.metric("Saldo", saldo)
+col1.metric("Ingresos", f"S/ {ingresos}")
+col2.metric("Gastos", f"S/ {gastos}")
+col3.metric("Balance", balance)
